@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+    <bean id="engine1" class="org.gfg.jbdl91.Engine" >
+        <property name="name" value="new engine"></property>
+        <property name="cc" value="1600"></property>
+    </bean>
+
+    <bean id="engine2" class="org.gfg.jbdl91.Engine" init-method="engineInit" scope="prototype">
+        <property name="name" value="Engine2"></property>
+        <property name="cc" value="1600"></property>
+    </bean>
+
+    <bean id="car1" class="org.gfg.jbdl91.Car">
+        <property name="name" value="Hexa"></property>
+        <property name="engine" ref="engine1"></property>
+    </bean>
+
+</beans>
