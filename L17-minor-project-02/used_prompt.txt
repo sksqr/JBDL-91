@@ -1,0 +1,34 @@
+1) Create JPA entities corresponding to the following table definition. Take care of mapping in these JPA entities and keep them in entity package. User (id,name, email, password, role[ADMIN, SELLER, CUSTOMER], created_at, updated_at, company_id)
+                                                                                                                                                 Company (id, name, number, is_active, user_id, created_at, updated_at)
+                                                                                                                                                 Product(id, name, description, price, stock, company_id, is_active, category_id, created_at, updated_at) 
+                                                                                                                                                 Order (id, user_id, total_amount, status(DRAFT,PLACED,ACCEPTED,SHIPPED,OFD), created_at, updated_at)
+                                                                                                                                                 Order_Item (id, order_id, product_id, quantity, price)
+                                                                                                                                                 Category(id, name, description)
+
+2) Create an POST end point "/company" in AdminController to create company in DB. Use DTOs as API Request and Response. Also create Required method in AdminService, Create required JPA repositories in repo package. Please also accept primary user data in request and create primary user(user_id in company) for company while creating company in DB.
+
+3) Give me a sample request body json for /company API.
+
+4) In Admin controller add an POST end point /seller to create Seller User for a company.  Use DTOs as API Request and Response. Also create Required method in AdminService, Create required JPA repositories in repo package.
+
+5) In Admin controller add an POST end point /category to create Category.  Use DTOs as API Request and Response. Also create Required method in AdminService, Create required JPA repositories in repo package.
+
+6) In Admin controller add an GET end point /sellers to get all sellers in system.  Use `SellerResponseDto` in Response. Also create Required method in AdminService, Create required JPA repositories in repo package.
+
+7) In SellerController add an Post end point /product to create product DB.  Use DTOs for API Request and Response. Also create Required method in SellerService, Create required JPA repositories in repo package.
+
+8) Give me sample request payload for createProduct API.
+
+9) In `CustomerController` add an GET end point /products to get all products by Keyword, check this keyword exists in name or description of the product.  Use DTOs for API Request and Response. Also create Required method in CustomerService, Create required JPA repositories in repo package.
+
+10) In `CustomerController` add an POST end point /order-item to Create and Add Order Item in Existing Order of user with status DRAFT OR Create new Order with DRAFT status. Use DTOs for API Request and Response. Also create Required method in CustomerService, Create required JPA repositories in repo package.
+
+11) In `CustomerController` add an GET end point /order/{id} to GET Order Details by Id of Order. I want all OrderItem details and Total of Order along with other information.
+
+12) In `CustomerController` add an PUT end point /order/{id}/submit to Change status of existing DRAFT order to PLACED.
+
+13) Create a README.md markdown file. Describing what is project does, What tech stack is used, API request flow.
+
+14) In AdminController update code of GET /sellers API to support pagination.
+
+15) Create a file used_prompt.txt and add all the prompts I have given to you in that file.
