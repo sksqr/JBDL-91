@@ -1,4 +1,4 @@
-package com.example.L21_email_sender_circuit_breaker_demo;
+package gfg.notification.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

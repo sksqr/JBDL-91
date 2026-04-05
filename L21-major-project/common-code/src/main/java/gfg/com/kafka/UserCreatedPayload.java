@@ -1,4 +1,4 @@
-package gfg.user.dto;
+package gfg.com.kafka;
 
 
 import lombok.*;
@@ -18,4 +18,5 @@ public class UserCreatedPayload implements Serializable {
     private Long userId;
     private String userName;
     private String userEmail;
+    private String requestId;
 }

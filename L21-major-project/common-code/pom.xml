@@ -6,15 +6,7 @@
         <artifactId>L21-major-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>wallet-service</artifactId>
-    <name>Archetype - wallet-service</name>
+    <artifactId>common-code</artifactId>
+    <name>Archetype - common-code</name>
     <url>http://maven.apache.org</url>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>common-code</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 </project>

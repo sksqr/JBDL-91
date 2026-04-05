@@ -1,9 +1,11 @@
 package gfg.user.service;
 
-import gfg.user.dto.UserCreatedPayload;
+
+import gfg.com.kafka.UserCreatedPayload;
 import gfg.user.dto.UserDto;
 import gfg.user.entity.User;
 import gfg.user.repo.UserRepo;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,7 @@ public class UserService {
     private String userCreatedTopic;
 
 
+    @Transactional
     public long createUser(UserDto userDto) throws ExecutionException, InterruptedException {
 
         User user = User.builder()

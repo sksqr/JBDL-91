@@ -26,6 +26,7 @@
 		<module>notification-service</module>
 		<module>wallet-service</module>
 		<module>transaction-service</module>
+		<module>common-code</module>
 	</modules>
 	<scm>
 		<connection/>
