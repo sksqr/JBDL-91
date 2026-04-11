@@ -8,6 +8,7 @@ import gfg.transaction.entity.TxnStatusEnum;
 import gfg.transaction.repo.TxnRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -54,6 +55,7 @@ public class TxnService {
         txnInitPayload.setToUserId(txnRequestDto.getToUserId());
         txnInitPayload.setAmount(txnRequestDto.getAmount());
         txnInitPayload.setId(txn.getId());
+        txnInitPayload.setRequestId(MDC.get("requestId"));
 
         Future<SendResult<String,Object>> future  = kafkaTemplate.
                 send(txnInitTopic, txnInitPayload.getFromUserId().toString(),txnInitPayload);

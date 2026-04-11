@@ -30,6 +30,7 @@ public class TxnController {
 
     @GetMapping("/status/{txnId}")
     public ResponseEntity<TxnStatusDto> getTxnStatus(@PathVariable String txnId){
+        LOGGER.info("Checking transaction status for : {}", txnId);
         return ResponseEntity.ok(txnService.getStatus(txnId));
     }
 

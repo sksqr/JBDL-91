@@ -7,6 +7,7 @@ import gfg.transaction.repo.TxnRepo;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -25,6 +26,7 @@ public class TransactionKafkaConsumerConfig {
     @KafkaListener(topics = "${txn.completed.topic}", groupId = "txn")
     public void consumeTxnInitTopic(ConsumerRecord payload) {
         TxnCompletedPayload txnCompletedPayload = OBJECT_MAPPER.readValue(payload.value().toString(), TxnCompletedPayload.class);
+        MDC.put("requestId", txnCompletedPayload.getRequestId());
         LOGGER.info("Read from kafka : {}", txnCompletedPayload);
         Transaction transaction = txnRepo.findById(txnCompletedPayload.getId()).get();
         if(!txnCompletedPayload.getSuccess()){
@@ -35,5 +37,6 @@ public class TransactionKafkaConsumerConfig {
             transaction.setStatus(TxnStatusEnum.SUCCESS);
         }
         txnRepo.save(transaction);
+        MDC.clear();
     }
 }
