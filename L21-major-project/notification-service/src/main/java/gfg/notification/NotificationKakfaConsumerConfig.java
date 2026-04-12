@@ -5,6 +5,7 @@ import gfg.com.kafka.WalletUpdatedPayload;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -25,6 +26,7 @@ public class NotificationKakfaConsumerConfig {
     @KafkaListener(topics = "${user.created.topic}", groupId = "email")
     public void consumeUserCreateTopic(ConsumerRecord payload)  {
         UserCreatedPayload userCreatedPayload = OBJECT_MAPPER.readValue(payload.value().toString(), UserCreatedPayload.class);
+        MDC.put("requestId", userCreatedPayload.getRequestId());
         LOGGER.info("Read from kafka : {}", userCreatedPayload);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom("sk.email.service@gmail.com");
@@ -33,12 +35,14 @@ public class NotificationKakfaConsumerConfig {
         simpleMailMessage.setCc("admin.jbdl@yopmail.com");
         simpleMailMessage.setTo(userCreatedPayload.getUserEmail());
         javaMailSender.send(simpleMailMessage);
+        MDC.clear();
     }
 
 
     @KafkaListener(topics = "${wallet.update.topic}", groupId = "email")
     public void consumeWalletUpdatedTopic(ConsumerRecord payload)  {
         WalletUpdatedPayload walletUpdatedPayload = OBJECT_MAPPER.readValue(payload.value().toString(), WalletUpdatedPayload.class);
+        MDC.put("requestId", walletUpdatedPayload.getRequestId());
         LOGGER.info("Read from kafka : {}", walletUpdatedPayload);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom("sk.email.service@gmail.com");
@@ -47,5 +51,6 @@ public class NotificationKakfaConsumerConfig {
         simpleMailMessage.setCc("admin.jbdl@yopmail.com");
         simpleMailMessage.setTo(walletUpdatedPayload.getUserEmail());
         javaMailSender.send(simpleMailMessage);
+        MDC.clear();
     }
 }

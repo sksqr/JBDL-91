@@ -9,6 +9,7 @@
     <artifactId>transaction-service</artifactId>
     <name>Archetype - transaction-service</name>
     <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

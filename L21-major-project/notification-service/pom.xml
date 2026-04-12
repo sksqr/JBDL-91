@@ -9,6 +9,7 @@
     <artifactId>notification-service</artifactId>
     <name>Archetype - notification-service</name>
     <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

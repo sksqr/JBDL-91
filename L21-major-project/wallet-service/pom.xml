@@ -9,6 +9,7 @@
     <artifactId>wallet-service</artifactId>
     <name>Archetype - wallet-service</name>
     <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

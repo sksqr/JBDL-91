@@ -1,0 +1,35 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 9090   # Gateway runs on 9090
+logging:
+  level:
+    ROOT: DEBUG
+spring:
+  application:
+    name: L24-Spring-Cloud-Gateway-Web-Mvc-demo
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          enabled: true
+          routes:
+            - id: wallet-service
+              uri: lb://wallet-service
+              predicates:
+                - Path=/wallet-service/**
+
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/user-service/**
+                - After=1775917821000
+
+            - id: transaction-service
+              uri: lb://transaction-service
+              predicates:
+                - Path=/transaction-service/**
+                - Cookie=featureA, true
+

@@ -5,6 +5,8 @@ import com.wallet.WalletService;
 import com.wallet.dto.AddMoneyRequest;
 import com.wallet.dto.AddMoneyResponse;
 import com.wallet.dto.WalletInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/wallet-service")
 public class WalletController {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(WalletController.class);
 
     @Autowired
     private WalletService walletService;
@@ -24,6 +28,7 @@ public class WalletController {
 
     @GetMapping("/wallet/{userId}")
     public WalletInfo getUser(@PathVariable("userId") long userId){
+        LOGGER.info("Fetching wallet info for userId:{}",userId);
         return walletService.getWalletInfo(userId);
     }
 
